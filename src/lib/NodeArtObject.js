@@ -9,16 +9,18 @@ class NodeArtObject {
   setup() {
     let group = new THREE.Group()
     let geometry = new THREE.TetrahedronGeometry(40, 1, 1)
-    let material = new THREE.MeshLambertMaterial({
+    let material = new THREE.MeshPhongMaterial({
       ambient: '#e46565',
       wireframe: true,
       color:'#e46565',
-      shininess: 50,
+      shininess: 30,
       shading: THREE.SmoothShading
     })
     let object = new THREE.Mesh(geometry, material)
+
     object.castShadow = true
     group.add(object)
+    group.position.y = 100
 
     this.createDots(geometry.vertices, group)
 
@@ -26,13 +28,16 @@ class NodeArtObject {
   }
 
   createDots(verts, group) {
-    let material = new THREE.MeshBasicMaterial({
-      color: '#e46565'
+    let material = new THREE.MeshPhongMaterial({
+      color: '#e46565',
+      shading: THREE.SmoothShading,
     })
 
     return verts.map(vert => {
       let geometry = new THREE.SphereGeometry(Math.random() * 5 + 2, 32, 32)
       let sphere = new THREE.Mesh(geometry, material)
+      sphere.castShadow = true
+      sphere.receiveShadow = true
       sphere.position.x = vert.x
       sphere.position.y = vert.y
       sphere.position.z = vert.z

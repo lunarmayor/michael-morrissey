@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { lighten, darken } from 'polished'
 import { palette, spacing } from 'theme'
 import lunar from 'assets/lunar.png'
-import { Grid, Section, Hero, AbsoluteFill, Distribute, FlexContainer } from 'components/layouts'
-import { Link } from 'react-router-dom'
+import { Grid, Section, Hero, AbsoluteFill, Distribute, FlexContainer, Box } from 'components/layouts'
+import { Link, withRouter } from 'react-router-dom'
 import RoomView from './RoomView'
 
 const StyledAbsoluteFill = AbsoluteFill.extend`
-  background: linear-gradient(to bottom, #3994F2, #6793F5, #8792F7, #A290FA, #BA8EFC, #D18BFF);
-  background: #e46565
+  background: ${props => props.background || palette.canvas};
+  transition: background 0.4s;
+  overflow: auto;
 `
 
 const DistributedSection = Section.withComponent(Distribute)
@@ -21,6 +23,17 @@ const Name = styled.div`
   font-size: 20px;
   position: relative;
   bottom: 3px;
+  color: ${props => props.light ? '#e2e2e2' : 'black'};
+`
+
+const Title = Name.extend`
+  font-size: 16px;
+  color: ${
+    props => !props.light ?
+      lighten(0.13, '#000')
+    : darken(0.13, '#e2e2e2')
+  };
+  margin-top: 4px;
 `
 
 const NavLink = styled(Link)`
@@ -29,32 +42,52 @@ const NavLink = styled(Link)`
   position: relative;
   top: 13px;
   text-decoration: none;
-  color: black;
+  color: ${props => props.light ? '#e2e2e2' : 'black'};
   margin-left: ${spacing * 2}px;
 `
 
-const AppView = ({ children }) => (
-  <StyledAbsoluteFill>
-    <DistributedSection>
-      <FlexContainer style={{ alignItems: 'center' }}>
-        <div style={{ marginRight: spacing}}>
-          <Logo src={lunar}/>
-        </div>
-        <Name>Lunar Mayor</Name>
-      </FlexContainer>
-      <nav>
-        <FlexContainer>
-          <NavLink to="">Identity</NavLink>
-          <NavLink to="">Projects</NavLink>
-          <NavLink to="">Art</NavLink>
-        </FlexContainer>
-      </nav>
-    </DistributedSection>
-    <Hero style={{ position: 'relative'}}>
-      <RoomView/>
-    </Hero>
-    {children}
-  </StyledAbsoluteFill>
-)
+const getBackground = (path) => {
+  switch (path) {
+    case '/projects':
+      return 'rgb(245, 245, 245)'
+    case '/art':
+      return 'black'
+    default:
+      return palette.canvas
+  }
+}
 
-export default AppView
+const isDark = (path) => path === '/art'
+
+
+const AppView = ({ children, location }) => {
+  const isDarkBackground = isDark(location.pathname)
+
+  return (
+    <StyledAbsoluteFill background={getBackground(location.pathname)}>
+      <DistributedSection>
+        <FlexContainer style={{ alignItems: 'center' }}>
+          <div style={{ marginRight: spacing}}>
+            <Link to="">
+              <Logo src={lunar}/>
+            </Link>
+          </div>
+          <Box hideMobile>
+            <Name light={isDarkBackground}>Lunar Mayor</Name>
+            <Title light={isDarkBackground}>Design Technologist</Title>
+          </Box>
+        </FlexContainer>
+        <nav>
+          <FlexContainer>
+            <NavLink light={isDarkBackground} to="identity">Identity</NavLink>
+            <NavLink light={isDarkBackground} to="projects">Projects</NavLink>
+            <NavLink light={isDarkBackground} to="art">Art</NavLink>
+          </FlexContainer>
+        </nav>
+      </DistributedSection>
+      {children}
+    </StyledAbsoluteFill>
+  )
+}
+
+export default withRouter(AppView)

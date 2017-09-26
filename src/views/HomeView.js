@@ -1,9 +1,12 @@
 import React from 'react'
 import { Section } from 'components/layouts'
+import { Hero } from 'components/layouts'
+import RoomView from './RoomView'
 
 const HomeView = (props) => (
-  <Section secondary style={{ height: 200}}>
-  </Section>
+  <Hero style={{ position: 'relative'}}>
+    <RoomView/>
+  </Hero>
 )
 
 export default HomeView
