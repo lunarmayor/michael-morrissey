@@ -89,7 +89,7 @@ const PortfolioView = (props) => (
             Gobbler is an interactive kiosk that helps users find the best phone plan and accessories for their interests.
           </Body>
           <Body>
-            We were tasked with taking a vague problem and turning it into a fully function prototype in 6 weeks.
+            We were tasked with taking a vague problem and turning it into a fully functioning prototype in 6 weeks.
           </Body>
           <Body>
             My coworker Aliya and I defined a core problem to solve, sketched, tested with users, and pulled together technology (facial recognition, natural language processing, svg animation) and created a cohesive experience to delight our users.
@@ -118,10 +118,10 @@ const PortfolioView = (props) => (
             ))}
           </Flex>
           <Body>
-            Art Machine is generative art creation tool that allows anyone to create beautify (or not) works of art.
+            Art Machine is generative art creation tool that allows anyone to create beautiful (or not) works of art.
           </Body>
           <Body>
-            It let's the computer do the hard work and the user take the role of currator selecting the best permutation of the batch and make high level designs around the arts direction
+            It lets the computer do the hard work and puts the user in the role of currator, selecting the best permutation of the batch.
           </Body>
           <Body>
             It's been my side project for quite a while and assists me in creation of my digital art.
