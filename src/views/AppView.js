@@ -91,7 +91,7 @@ const AppView = ({ children, location }) => {
             <Box hideMobile>
               <ExternalLink
                 light={isDarkBackground}
-                href="mailto:mikehmorrissey@gmail.com"
+                href="mailto:lunarmayor@gmail.com"
               >
                 Talk to Me
               </ExternalLink>
