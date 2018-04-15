@@ -3,14 +3,15 @@ import styled from 'styled-components'
 import { lighten, darken } from 'polished'
 import { palette, spacing } from 'theme'
 import lunar from 'assets/lunar.png'
+import lunarp from 'assets/lunar.webp'
 import { Grid, Section, Hero, AbsoluteFill, Distribute, FlexContainer, Box } from 'components/layouts'
 import { Link, withRouter } from 'react-router-dom'
 import RoomView from './RoomView'
 
-const StyledAbsoluteFill = AbsoluteFill.extend`
+const StyledAbsoluteFill = styled.div`
   background: ${props => props.background || palette.canvas};
-  transition: background 0.4s;
   overflow: auto;
+  min-height: 100vh;
 `
 
 const DistributedSection = Section.withComponent(Distribute)
@@ -46,6 +47,8 @@ const NavLink = styled(Link)`
   margin-left: ${spacing * 2}px;
 `
 
+const ExternalLink = NavLink.withComponent('a')
+
 const getBackground = (path) => {
   switch (path) {
     case '/projects':
@@ -69,7 +72,10 @@ const AppView = ({ children, location }) => {
         <FlexContainer style={{ alignItems: 'center' }}>
           <div style={{ marginRight: spacing}}>
             <Link to="">
-              <Logo src={lunar}/>
+              <picture>
+                <source srcSet={lunarp} type="image/webp"/>
+                <Logo src={lunar}/>
+              </picture>
             </Link>
           </div>
           <Box hideMobile>
@@ -82,6 +88,14 @@ const AppView = ({ children, location }) => {
             <NavLink light={isDarkBackground} to="identity">Identity</NavLink>
             <NavLink light={isDarkBackground} to="projects">Projects</NavLink>
             <NavLink light={isDarkBackground} to="art">Art</NavLink>
+            <Box hideMobile>
+              <ExternalLink
+                light={isDarkBackground}
+                href="mailto:mikehmorrissey@gmail.com"
+              >
+                Talk to Me
+              </ExternalLink>
+            </Box>
           </FlexContainer>
         </nav>
       </DistributedSection>

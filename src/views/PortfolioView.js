@@ -7,10 +7,20 @@ import gobbler1 from 'assets/GobblerHappy.png'
 import gobbler2 from 'assets/Recs.png'
 import gobbler3 from 'assets/Interests.png'
 
+import gobbler1p from 'assets/GobblerHappy.webp'
+import gobbler2p from 'assets/Recs.webp'
+import gobbler3p from 'assets/Interests.webp'
+
 import artMachine1 from 'assets/art-machine-1.png'
 import artMachine2 from 'assets/art-machine-2.png'
 import artMachine3 from 'assets/art-machine-3.png'
 import artMachine4 from 'assets/art-machine-4.png'
+
+import artMachine1p from 'assets/art-machine-1.webp'
+import artMachine2p from 'assets/art-machine-2.webp'
+import artMachine3p from 'assets/art-machine-3.webp'
+import artMachine4p from 'assets/art-machine-4.webp'
+
 
 const H1 = styled.h1`
   font-family: rubik;
@@ -71,9 +81,9 @@ const PortfolioView = (props) => (
         </Box>
         <Box py={[0, 3]} pl={[0, 3]} pr={0} w={[1, 1/2]}>
           <Grid>
-            <img src={gobbler1}/>
-            <img src={gobbler2}/>
-            <img src={gobbler3}/>
+            <Img src={gobbler1} webp={gobbler1p}/>
+            <Img src={gobbler2} webp={gobbler2p}/>
+            <Img src={gobbler3} webp={gobbler3p}/>
           </Grid>
         </Box>
         <Box p={[2, 3]} w={[1, 1/2]}>
@@ -102,10 +112,10 @@ const PortfolioView = (props) => (
         </Box>
         <Box py={[0, 3]} pl={[0, 3]} pr={0} w={[1, 1/2]}>
           <Grid>
-            <img src={artMachine1}/>
-            <img src={artMachine2}/>
-            <img src={artMachine3}/>
-            <img src={artMachine4}/>
+            <Img src={artMachine1} webp={artMachine1p}/>
+            <Img src={artMachine2} webp={artMachine2p}/>
+            <Img src={artMachine3} webp={artMachine3p}/>
+            <Img src={artMachine4} webp={artMachine4p}/>
           </Grid>
         </Box>
         <Box p={[2, 3]} w={[1, 1/2]}>
@@ -131,5 +141,14 @@ const PortfolioView = (props) => (
     </Flex>
   </div>
 )
+
+const Img = ({ src, webp }) => (
+  <picture>
+    <source srcSet={webp} type="image/webp"/>
+    <img src={src}/>
+  </picture>
+)
+
+
 
 export default PortfolioView

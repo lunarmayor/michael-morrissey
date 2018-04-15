@@ -5,10 +5,13 @@
   "dependencies": {
     "grid-styled": "^2.0.0-10",
     "polished": "^1.4.0",
+    "popmotion": "^8.1.10",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-imageloader": "^2.1.0",
+    "react-lazy-load": "^3.0.13",
+    "react-lazyload": "^2.3.0",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10",
     "styled-components": "^2.1.2",
@@ -19,6 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "surge --project ./build --domain https://lunarmayor.surge.sh"
   }
 }

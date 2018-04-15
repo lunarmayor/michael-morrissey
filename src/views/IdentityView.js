@@ -4,6 +4,8 @@ import { position } from 'polished'
 import { Flex, Box } from 'grid-styled'
 
 import michael from 'assets/michael.JPG'
+import me  from 'assets/me.jpg'
+import michaelp from 'assets/michael.webp'
 
 const H1 = styled.h1`
   font-family: rubik;
@@ -27,6 +29,8 @@ const H2 = styled.h2`
   line-height: 1.5;
 `
 
+// maybe
+//border: 8px solid #252424;
 const Avatar = styled.div`
   width: 100%;
   border-radius: 50%;
@@ -48,7 +52,7 @@ const Avatar = styled.div`
 const Av = styled.img`
   border-radius: 50%;
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
 `
 
 const SkillHeader = H2.extend`
@@ -166,9 +170,14 @@ const tools = [
 const IdentityView = () => (
   <div>
     <Flex px={[1, 2, 4]} py={[0, 2]} wrap>
-      <Box p={2} px={3} w={[1, 1/3]}>
-        <Av src={michael}/>
-      </Box>
+      <Flex justify="center" p={2} px={3} w={[1, 1/3]}>
+        <div>
+          <picture>
+            {false &&<source srcSet={michaelp} type="image/webp"/>}
+            <Av src={me}/>
+          </picture>
+        </div>
+      </Flex>
       <Box p={2} w={[1, 2/3]}>
         <H1 style={{ marginTop: 0 }}>Let's gaze into the abyss of my identity together</H1>
         <H2>I'm a <span>full stack developer</span> and <span>ux designer</span></H2>
@@ -194,7 +203,7 @@ const IdentityView = () => (
       <Box px={[2, 3]} py={[2, 3]} w={1}>
         <SkillHeader>Interests</SkillHeader>
         <Grid>
-          {['Design Systems', 'Atomic Design', 'Sound Design', 'Design Thinking', 'Rapid Prototyping', 'Lean Methodolgies', 'Generative Design Tools', 'WebVR', 'Mindfullness', 'Generative Art', 'AI Enabled Art', 'Bots'].map(skill => (
+          {['Design Systems', 'Atomic Design', 'Sound Design', 'Design Thinking', 'Rapid Prototyping', 'Lean Methodolgies', 'Generative Design Tools', 'WebVR', 'Mindfullness', 'Generative Art', 'AI Enabled Art', 'Bots', 'Behaviorial Psychology', 'Systems Thinking'].map(skill => (
             <Flex align="center">
               <Icon/>
               <SkillName>{skill}</SkillName>
