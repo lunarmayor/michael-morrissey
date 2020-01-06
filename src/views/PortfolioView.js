@@ -21,6 +21,10 @@ import artMachine2p from 'assets/art-machine-2.webp'
 import artMachine3p from 'assets/art-machine-3.webp'
 import artMachine4p from 'assets/art-machine-4.webp'
 
+import cogni3 from 'assets/invoicing.png'
+import cogni2 from 'assets/cashback.png'
+import cogni1 from 'assets/cogni-homescreen.png'
+
 
 const H1 = styled.h1`
   font-family: rubik;
@@ -37,14 +41,15 @@ const Body = styled.p`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding: 32px;
+  padding-top: 16px;
   grid-gap: 16px;
   @media(max-width: 640px) {
-    grid-template-columns: 1fr 1fr;
-    padding: 16px;
+    grid-template-columns: 1fr;
   };
 
   @media (max-width: 1040px) and (min-width: 640px) {
-    grid-template-columns: 1fr 1fr
+    grid-template-columns: 1fr 1fr 1fr
   };
 
   @media(min-width: 1300px) {
@@ -71,10 +76,100 @@ const ProjectContainer = styled(Flex).attrs({
   border-bottom: 1px solid gainsboro;
 `
 
+const Label = styled.div`
+  font-family: rubik;
+  font-weight: 500;
+  color: #252525;
+`
+
+
+const Project = ({ image, desciption }) => (
+  <Box mb={2}>
+    <Box mb={1}>
+      <Img style={{ borderRadius: 0, maxHeight: 200, objectFit: 'cover', objectPosition: 'top' }} src={image.png} webp={image.webp}/>
+    </Box>
+    <Label>{desciption}</Label>
+  </Box>
+
+)
+
+const projects = [
+  { image: { png: cogni1, webp: null }, desciption: 'MOCingbird' },
+  { image: { png: cogni1, webp: null }, desciption: 'Cogni' },
+  { image: { png: cogni1, webp: null }, desciption: 'Diligent Login' },
+  { image: { png: gobbler1, webp: gobbler1p }, desciption: 'Gobbler' },
+  { image: { png: artMachine1, webp: artMachine1p}, desciption: 'Art Machine' },
+  { image: { png: artMachine1, webp: artMachine1p}, desciption: 'Glitch Mirror' },
+]
 
 const PortfolioView = (props) => (
+  <Grid>
+    {projects.map(project => (
+      <Project {...project}/>
+    ))}
+  </Grid>
+)
+
+const PortfolioView2 = (props) => (
   <div>
     <Flex wrap>
+      <ProjectContainer>
+        <Box px={2} mt={1} showMobile w={1}>
+          <H1 noMargin>MOCingbird</H1>
+        </Box>
+        <Box py={[0, 3]} pl={[0, 3]} pr={0} w={[1, 1/2]}>
+          <Grid>
+            <Img src={cogni1}/>
+            <Img src={cogni2}/>
+            <Img src={cogni3}/>
+          </Grid>
+        </Box>
+        <Box p={[2, 3]} w={[1, 1/2]}>
+          <Box hideMobile>
+            <H1>MOCingbird</H1>
+          </Box>
+          <Flex wrap>
+            {['User Research', 'UX', 'UI', 'React', 'Strategy'].map(topic =>(
+              <Topic>{topic}</Topic>
+            ))}
+          </Flex>
+          <Body>
+            The MOCingbird team is working hard to simplify continuing education for doctors and hospital administrators. Their mission is to create the easiest place for medical professionals to monitor their MOC and CME requirements.
+          </Body>
+          <Body>
+            For this whirlwind of a project, I ran usability tests and a hueristic review to evaluate their existing work, proposed some strategic changes to their product, and built an interactive prototype to evolve upon some key areas of the app.
+          </Body>
+        </Box>
+      </ProjectContainer>
+      <ProjectContainer>
+        <Box px={2} mt={1} showMobile w={1}>
+          <H1 noMargin>Cogni</H1>
+        </Box>
+        <Box py={[0, 3]} pl={[0, 3]} pr={0} w={[1, 1/2]}>
+          <Grid>
+            <Img src={cogni1}/>
+            <Img src={cogni2}/>
+            <Img src={cogni3}/>
+          </Grid>
+        </Box>
+        <Box p={[2, 3]} w={[1, 1/2]}>
+          <Box hideMobile>
+            <H1>Cogni</H1>
+          </Box>
+          <Flex wrap>
+            {['React', 'Redux', 'React Native', 'Design thinking'].map(topic =>(
+              <Topic>{topic}</Topic>
+            ))}
+          </Flex>
+          <Body>
+            Cogni’s mission was to build a modern bank geared towards today’s lifestyle. They learned that most of the future generation's income was from part-time employment opportunities; that most people had trouble saving for their goals, that it was hard to receive payments from clients, and that their current bank’s cash back solutions left more to be desired.
+          </Body>
+          <Body>
+            For this project I lead the development of an react native teaser app to generate interest in the platform and the development of the first stage of the main banking application.
+          </Body>
+        </Box>
+      </ProjectContainer>
+
       <ProjectContainer>
         <Box px={2} mt={1} showMobile w={1}>
           <H1 noMargin>Gobbler</H1>
@@ -142,10 +237,10 @@ const PortfolioView = (props) => (
   </div>
 )
 
-const Img = ({ src, webp }) => (
+const Img = ({ src, webp, ...props }) => (
   <picture>
     <source srcSet={webp} type="image/webp"/>
-    <img src={src}/>
+    <img src={src} {...props}/>
   </picture>
 )
 

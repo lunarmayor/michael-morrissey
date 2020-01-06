@@ -1,7 +1,8 @@
-import FlexContainer from './FlexContainer'
+import FlexContainer from "./FlexContainer";
+import styled from "styled-components";
 
-const Distribute = FlexContainer.extend`
+const Distribute = styled(FlexContainer)`
   justify-content: space-between;
-`
+`;
 
-export default Distribute
+export default Distribute;

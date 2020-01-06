@@ -1,8 +1,7 @@
 import * as THREE from 'three'
 import { range } from 'ramda'
 import ObjLoader from 'three-obj-loader'
-import neonate from 'popmotion/animations/tween'
-import { easing, spring, stagger } from 'popmotion'
+import { easing, spring, stagger, tween as neonate } from 'popmotion'
 
 let proxyTHREE = THREE
 ObjLoader(proxyTHREE)

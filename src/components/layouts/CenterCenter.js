@@ -1,9 +1,10 @@
-import FlexContainer from './FlexContainer'
+import FlexContainer from "./FlexContainer";
+import styled from "styled-components";
 
-const CenterCenter = FlexContainer.extend`
+const CenterCenter = styled(FlexContainer)`
   justify-content: center;
   align-items: center;
-  height: ${props => props.full ? '100%' : 'auto'};
-`
+  height: ${props => (props.full ? "100%" : "auto")};
+`;
 
-export default CenterCenter
+export default CenterCenter;
