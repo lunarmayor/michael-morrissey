@@ -12,3 +12,14 @@ img {
 * {
   box-sizing: border-box;
 }
+
+@media (max-width: 650px) {
+  .u-hideOnMobile {
+    display: none;
+  }
+}
+@media (min-width: 650px) {
+  .u-hideOnDesktop {
+    display: none;
+  }
+}

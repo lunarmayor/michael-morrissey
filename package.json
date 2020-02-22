@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animated-scroll-to": "^2.0.5",
     "framer-motion": "^1.7.0",
     "grid-styled": "^5.0.2",
     "polished": "^3.4.2",

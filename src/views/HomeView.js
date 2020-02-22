@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Section } from "components/layouts";
 import { Hero } from "components/layouts";
+import { Link } from "react-router-dom";
 import RoomView from "./RoomView";
 import cogni1 from "assets/cogni-homescreen.png";
+import FadeInBox from "./FadeInBox";
 import michael from "assets/michael.JPG";
 import me from "assets/me.jpg";
 import LazyLoad from "react-lazyload";
+import linkedin from "assets/010-linkedin.png";
+import instagram from "assets/011-instagram.png";
+import twitter from "assets/013-twitter-1.png";
 
 import michaelp from "assets/michael.webp";
 import { Flex, Box } from "grid-styled";
@@ -79,6 +84,10 @@ const ArtGrid = styled.div`
   @media (min-width: 1300px) {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  @media (min-width: 1800px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `;
 
 const PortfolioGrid = styled.div`
@@ -88,6 +97,9 @@ const PortfolioGrid = styled.div`
   background: black;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const GridItemContainer = styled.div`
@@ -105,6 +117,9 @@ const MeGrid = styled.div`
   grid-gap: 1px;
   background: rgb(255, 255, 255, 0.1);
   width: 100%;
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Image = styled.img`
@@ -124,6 +139,12 @@ const Title = styled.div`
   position: absolute;
   bottom: 0;
   padding: 32px;
+  font-size: 24px;
+  color: white;
+`;
+
+const Label = styled.div`
+  font-family: Rubik;
   font-size: 24px;
   color: white;
 `;
@@ -178,20 +199,22 @@ const MeGridItem = ({ color, children }) => (
 );
 
 const ListItem = ({ children }) => (
-  <Flex alignItems="center">
-    <Box py={3} pl={4} order={1}>
-      <H3>{children}</H3>
-    </Box>
-    <div
-      style={{
-        order: 0,
-        border: "2px solid white",
-        width: 30,
-        height: 30,
-        borderRadius: "50%"
-      }}
-    />
-  </Flex>
+  <FadeInBox>
+    <Flex alignItems="center">
+      <Box py={3} pl={4} order={1}>
+        <H3>{children}</H3>
+      </Box>
+      <div
+        style={{
+          order: 0,
+          border: "2px solid white",
+          width: 30,
+          height: 30,
+          borderRadius: "50%"
+        }}
+      />
+    </Flex>
+  </FadeInBox>
 );
 
 const ListItemLeft = ({ children }) => (
@@ -228,8 +251,10 @@ const PortfolioGridItem = ({
   >
     <GridItemContainer>
       <Image src={image} />
-      {false && <Title>{title}</Title>}
     </GridItemContainer>
+    <Box className="u-hideOnDesktop" my={3} display={["block", "none"]}>
+      <Label>{title}</Label>
+    </Box>
   </motion.div>
 );
 
@@ -248,7 +273,7 @@ const HomeView = props => {
   const hoverX = useMotionValue(400);
   const [hoverActive, setHoverActive] = useState(false);
   const [currentItem, setCurrentItem] = useState("");
-  const hoverY = useMotionValue(900);
+  const hoverY = useMotionValue(2000);
   const hoverXSpring = useSpring(hoverX, { damping: 10 });
   const hoverYSpring = useSpring(hoverY, { damping: 10 });
   const yRange = useTransform(scrollY, [0, 400], [1, 0]);
@@ -281,45 +306,47 @@ const HomeView = props => {
           </Hero>
         </motion.div>
       </motion.div>
-      <PortfolioGrid>
-        <PortfolioGridItem
-          y={yInvert}
-          setActive={isActive => {
-            setHoverActive(isActive);
-            setCurrentItem(
-              "https://cdn.theorg.com/74693ee3-9e07-45b2-90d8-506b76cdeb42_medium.jpg"
-            );
-          }}
-          send={yTranslate}
-          setMouseMove={coordinates => {
-            const [x, y] = coordinates;
-            hoverX.set(x - 50);
-            hoverY.set(y - 50);
-          }}
-          title="WeWork Virual Tours"
-          image={
-            "https://locations-api-production.imgix.net/locations/image/b76c4f76-2fdd-11e9-80e8-1202be33576a/Web_72DPI-20181220_WeWork_Daimyo_-_Common_Areas_-_Couch_Area-2.jpg?auto=format%20compress&fit=crop&q=50&w=1800&h=1013"
-          }
-        />
-
-        <PortfolioGridItem
-          y={yInvert}
-          setActive={isActive => {
-            setHoverActive(isActive);
-            setCurrentItem(
-              "https://pbs.twimg.com/profile_images/496312861665148930/-PP0V-KL.png"
-            );
-          }}
-          setMouseMove={coordinates => {
-            const [x, y] = coordinates;
-            console.log(x, y);
-            hoverX.set(x - 50);
-            hoverY.set(y - 50);
-          }}
-          send={yTranslate}
-          title="CTCA Virtual Clinic"
-          image={patientProfile}
-        />
+      <PortfolioGrid id="portfolio">
+        <Link to="/wework">
+          <PortfolioGridItem
+            y={yInvert}
+            setActive={isActive => {
+              setHoverActive(isActive);
+              setCurrentItem(
+                "https://cdn.theorg.com/74693ee3-9e07-45b2-90d8-506b76cdeb42_medium.jpg"
+              );
+            }}
+            send={yTranslate}
+            setMouseMove={coordinates => {
+              const [x, y] = coordinates;
+              hoverX.set(x - 50);
+              hoverY.set(y - 50);
+            }}
+            title="WeWork Virual Tours"
+            image={
+              "https://locations-api-production.imgix.net/locations/image/b76c4f76-2fdd-11e9-80e8-1202be33576a/Web_72DPI-20181220_WeWork_Daimyo_-_Common_Areas_-_Couch_Area-2.jpg?auto=format%20compress&fit=crop&q=50&w=1800&h=1013"
+            }
+          />
+        </Link>
+        <Link to="/ctca">
+          <PortfolioGridItem
+            y={yInvert}
+            setActive={isActive => {
+              setHoverActive(isActive);
+              setCurrentItem(
+                "https://pbs.twimg.com/profile_images/496312861665148930/-PP0V-KL.png"
+              );
+            }}
+            setMouseMove={coordinates => {
+              const [x, y] = coordinates;
+              hoverX.set(x - 50);
+              hoverY.set(y - 50);
+            }}
+            send={yTranslate}
+            title="CTCA Virtual Clinic"
+            image={patientProfile}
+          />
+        </Link>
 
         <PortfolioGridItem
           y={yInvert}
@@ -391,38 +418,47 @@ const HomeView = props => {
           src={currentItem}
         />
       </motion.div>
-      <Box style={{ position: "relative" }}>
+      <Box style={{ position: "relative" }} id="identity">
         <MeGrid>
           <MeGridItem style={{ position: "relative" }} color="rgba(40,40,40,1)">
-            <Box py={4} px={5}>
-              <H2>Identity</H2>
-              <P>
-                I'm a ux strategist, full stack engineer, and surrealist artist
-                using empathy and code to solve challenging problems and help
-                companies learn faster.
-              </P>
-              <P>
-                I like working in highly collaborate groups that care deeply
-                about getting to the truth, priorizing communication over
-                tooling, making over talking, and are crytal clear about what
-                outcomes they are trying to produce.
-              </P>
-              <P>
-                I try to think less about my role and more about what the most
-                valuable activity I could be doing for a customer, user, or
-                business.
-              </P>
-
-              <P>
-                If you're interested in the type of work I like and don't like,
-                I made a couple lists{" "}
-                <a
-                  style={{ color: "white" }}
-                  href="https://www.notion.so/lunarmayor/About-Working-f25b562cae714bb099ca4c59d0cfea57"
-                >
-                  here.
-                </a>
-              </P>
+            <Box py={4} px={[4, 5]}>
+              <FadeInBox>
+                <H2>Identity</H2>
+              </FadeInBox>
+              <FadeInBox>
+                <P>
+                  I'm a ux strategist, full stack engineer, and surrealist
+                  artist using empathy and code to solve challenging problems
+                  and help companies learn faster.
+                </P>
+              </FadeInBox>
+              <FadeInBox>
+                <P>
+                  I like working in highly collaborate groups that care deeply
+                  about getting to the truth, priorizing communication over
+                  tooling, making over talking, and are crytal clear about what
+                  outcomes they are trying to produce.
+                </P>
+              </FadeInBox>
+              <FadeInBox>
+                <P>
+                  I try to think less about my role and more about what the most
+                  valuable activity I could be doing for a customer, user, or
+                  business.
+                </P>
+              </FadeInBox>
+              <FadeInBox>
+                <P>
+                  If you're interested in the type of work I like and don't
+                  like, I made a couple lists{" "}
+                  <a
+                    style={{ color: "white" }}
+                    href="https://www.notion.so/lunarmayor/About-Working-f25b562cae714bb099ca4c59d0cfea57"
+                  >
+                    here.
+                  </a>
+                </P>
+              </FadeInBox>
               <img
                 style={{
                   position: "absolute",
@@ -442,8 +478,10 @@ const HomeView = props => {
           </MeGridItem>
 
           <MeGridItem color="rgba(40,40,40,1)">
-            <Box pt={4} px={5} pb={5}>
-              <H2>Key Skills</H2>
+            <Box pt={4} px={[4, 5]} pb={[4, 5]}>
+              <FadeInBox>
+                <H2>Key Skills</H2>
+              </FadeInBox>
               <ListItem>UX Strategy</ListItem>
               <ListItem>Rapid Prototyping</ListItem>
               <ListItem>UX Design</ListItem>
@@ -455,50 +493,123 @@ const HomeView = props => {
         </MeGrid>
       </Box>
 
-      <Box style={{ position: "relative", minHeight: "100vh" }}>
+      <Box style={{ position: "relative", minHeight: "100vh" }} id="art">
         <Box px={4} pt={4}>
-          <H2 style={{ margin: 0 }}>Weird Art</H2>
+          <H2 style={{ margin: 0, textAlign: "center" }}>Weird Art</H2>
         </Box>
 
         <ArtGrid>
-          <VideoContainer>
-            <VineEmbed src="https://vine.co/v/MFOBY11100E/embed/simple" />
-          </VideoContainer>
+          <FadeInBox>
+            <VideoContainer>
+              <VineEmbed src="https://vine.co/v/MFOBY11100E/embed/simple" />
+            </VideoContainer>
+          </FadeInBox>
 
-          <Img src={photo1} webp={photo1p} />
-          <VideoContainer>
-            <VineEmbed src="https://vine.co/v/MnA0aQtUBPK/embed/simple" />
-          </VideoContainer>
-          <VideoContainer>
-            <VineEmbed src="https://vine.co/v/MhAFTJp9XOX/embed/simple" />
-          </VideoContainer>
-          <img src={photo2} webp={photo2p} />
-          <VideoContainer>
-            <VineEmbed src="https://vine.co/v/MxBDDnU3uKz/embed/simple" />
-          </VideoContainer>
-          <Img src={photo3} webp={photo3p} lazy />
-          <VideoContainer>
-            <VineEmbed src="https://vine.co/v/MqDJupFUqFQ/embed/simple" />
-          </VideoContainer>
-          <Img src={photo10} webp={photo10p} lazy />
-          <VideoContainer>
-            <VineEmbed src="https://vine.co/v/MhKYO1xav0E/embed/simple" />
-          </VideoContainer>
-          <Img src={photo4} webp={photo4p} lazy />
-          <Img src={photo5} webp={photo5p} lazy />
-          <Img src={photo6} webp={photo6p} lazy />
-          <img src={photo7} />
-          <Img src={photo8} webp={photo8p} lazy />
-          <Img src={photo11} webp={photo11p} lazy />
-          <Img src={photo12} webp={photo12p} lazy />
-          <Img src={photo13} webp={photo13p} lazy />
+          <FadeInBox>
+            <Img src={photo1} webp={photo1p} />
+          </FadeInBox>
+          <FadeInBox>
+            <VideoContainer>
+              <VineEmbed src="https://vine.co/v/MnA0aQtUBPK/embed/simple" />
+            </VideoContainer>
+          </FadeInBox>
+          <FadeInBox>
+            <VideoContainer>
+              <VineEmbed src="https://vine.co/v/MhAFTJp9XOX/embed/simple" />
+            </VideoContainer>
+          </FadeInBox>
+          <FadeInBox>
+            <img src={photo2} webp={photo2p} />
+          </FadeInBox>
+          <FadeInBox>
+            <VideoContainer>
+              <VineEmbed src="https://vine.co/v/MxBDDnU3uKz/embed/simple" />
+            </VideoContainer>
+          </FadeInBox>
+          <FadeInBox>
+            <Img src={photo3} webp={photo3p} lazy />
+          </FadeInBox>
+          <FadeInBox>
+            <VideoContainer>
+              <VineEmbed src="https://vine.co/v/MqDJupFUqFQ/embed/simple" />
+            </VideoContainer>
+          </FadeInBox>
+          <FadeInBox>
+            <Img src={photo10} webp={photo10p} lazy />
+          </FadeInBox>
+          <FadeInBox>
+            <VideoContainer>
+              <VineEmbed src="https://vine.co/v/MhKYO1xav0E/embed/simple" />
+            </VideoContainer>
+          </FadeInBox>
+          <FadeInBox>
+            <Img src={photo4} webp={photo4p} lazy />
+          </FadeInBox>
+          <FadeInBox>
+            <Img src={photo5} webp={photo5p} lazy />
+          </FadeInBox>
+          <FadeInBox>
+            <Img src={photo6} webp={photo6p} lazy />
+          </FadeInBox>
         </ArtGrid>
       </Box>
-      <Box px={4} py={4} style={{ background: "black", height: "60vh" }}>
-        <H2>Contact</H2>
+      <Box
+        px={4}
+        py={4}
+        style={{
+          background: "black",
+          position: "relative",
+          textAlign: "center"
+        }}
+        id="contact"
+      >
+        <Box my={4}>
+          <img
+            style={{
+              zIndex: 10,
+              borderRadius: "50%",
+              width: 300,
+              height: 300,
+              border: "10px solid rgba(30,30,30,1)"
+            }}
+            src={me}
+          />
+          <Box mt={4}>
+            <Flex justifyContent="center">
+              <a href="https://twitter.com/lunarmayor" target="_blank">
+                <SocialButton src={twitter} />
+              </a>
+              <a href="https://instagram.com/lunarmayor" target="_blank">
+                <SocialButton src={instagram} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/mikehmorrissey/"
+                target="_blank"
+              >
+                <SocialButton src={linkedin} />
+              </a>
+            </Flex>
+          </Box>
+        </Box>
       </Box>
     </div>
   );
 };
+
+const SocialButton = styled.img`
+  margin-left: 12px;
+  margin-right: 12px;
+  width: 80px;
+`;
+
+const Button = styled.div`
+  border: 2px solid white;
+  border-radius: 50px;
+  color: white;
+  font-family: rubik;
+  background: gray;
+  font-size: 32px;
+  padding: 16px 32px;
+`;
 
 export default HomeView;

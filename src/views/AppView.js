@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { lighten, darken } from "polished";
 import { palette, spacing } from "theme";
 import lunar from "assets/lunar.png";
+import ScrollToTop from "./ScrollToTop";
 import {
   useViewportScroll,
   useTransform,
@@ -10,6 +11,7 @@ import {
   useMotionValue,
   useSpring
 } from "framer-motion";
+import animateScrollTo from "animated-scroll-to";
 
 import lunarp from "assets/lunar.webp";
 import {
@@ -40,17 +42,18 @@ const Name = styled.div`
   font-size: 20px;
   position: relative;
   bottom: 3px;
-  color: ${props => (props.light ? "#e2e2e2" : "black")};
+  color: ${props => (props.light ? "white" : "black")};
 `;
 
 const Title = styled(Name)`
   font-size: 16px;
   color: ${props =>
-    !props.light ? lighten(0.13, "#000") : darken(0.13, "#e2e2e2")};
+    !props.light ? lighten(0.13, "#000") : darken(0.13, "white")};
   margin-top: 4px;
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled.div`
+  cursor: pointer;
   font-family: rubik;
   font-size: 18px;
   position: relative;
@@ -66,14 +69,22 @@ const getBackground = path => {
   switch (path) {
     case "/projects":
       return "rgb(245, 245, 245)";
-    case "/art":
+    case "/we":
       return "#191919";
     default:
       return "#191919";
   }
 };
 
-const isDark = path => true;
+const animateToId = id =>
+  animateScrollTo(document.getElementById(id), {
+    verticalOffset: -100
+  });
+
+const isDark = path => {
+  return true;
+  return path !== "/wework";
+};
 
 const AppView = ({ children, location }) => {
   const isDarkBackground = isDark(location.pathname);
@@ -109,6 +120,7 @@ const AppView = ({ children, location }) => {
           zIndex: 10
         }}
       >
+        <ScrollToTop />
         <Box
           px={4}
           py={!shrink ? 4 : 3}
@@ -116,7 +128,10 @@ const AppView = ({ children, location }) => {
         >
           <Flex justifyContent="space-between">
             <FlexContainer style={{ alignItems: "center" }}>
-              <div style={{ marginRight: spacing }}>
+              <div
+                onClick={() => animateScrollTo(0)}
+                style={{ marginRight: spacing }}
+              >
                 <Link to="">
                   <picture>
                     <source srcSet={lunarp} type="image/webp" />
@@ -136,20 +151,50 @@ const AppView = ({ children, location }) => {
               </Box>
             </FlexContainer>
             <nav>
-              <FlexContainer>
-                <NavLink light={isDarkBackground} to="projects">
-                  Projects
-                </NavLink>
-                <NavLink light={isDarkBackground} to="identity">
-                  Identity
-                </NavLink>
-                <NavLink light={isDarkBackground} to="art">
-                  Art
-                </NavLink>
-                <NavLink light={isDarkBackground} to="art">
-                  Contact
-                </NavLink>
-              </FlexContainer>
+              {location.pathname === "/" ? (
+                <FlexContainer>
+                  <NavLink
+                    onClick={() => {
+                      animateToId("portfolio");
+                    }}
+                    light={isDarkBackground}
+                    to="projects"
+                  >
+                    Projects
+                  </NavLink>
+                  <NavLink
+                    onClick={() => {
+                      animateToId("identity");
+                    }}
+                    light={isDarkBackground}
+                    to="identity"
+                  >
+                    Identity
+                  </NavLink>
+                  <NavLink
+                    onClick={() => {
+                      animateToId("art");
+                    }}
+                    light={isDarkBackground}
+                    to="art"
+                  >
+                    Art
+                  </NavLink>
+                  <NavLink
+                    onClick={() => {
+                      animateToId("contact");
+                    }}
+                    light={isDarkBackground}
+                    to="art"
+                  >
+                    Contact
+                  </NavLink>
+                </FlexContainer>
+              ) : (
+                <FlexContainer>
+                  <NavLink light={true}>Close</NavLink>
+                </FlexContainer>
+              )}
             </nav>
           </Flex>
         </Box>
