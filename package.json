@@ -6,7 +6,7 @@
     "animated-scroll-to": "^2.0.5",
     "framer-motion": "^1.7.0",
     "grid-styled": "^5.0.2",
-    "polished": "^3.4.2",
+    "polished": "^3.4.4",
     "popmotion": "^8.1.10",
     "ramda": "^0.26.1",
     "react": "^16.12.0",
@@ -14,9 +14,9 @@
     "react-imageloader": "^3.0.0",
     "react-lazy-load": "^3.0.13",
     "react-lazyload": "^2.3.0",
-    "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10",
-    "styled-components": "^4.4.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.0",
+    "styled-components": "^5.0.1",
     "three": "^0.86.0",
     "three-obj-loader": "^1.1.2"
   },
@@ -26,5 +26,17 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "surge --project ./build --domain https://lunarmayor.surge.sh"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
