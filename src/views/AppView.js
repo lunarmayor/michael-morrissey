@@ -52,7 +52,7 @@ const Title = styled(Name)`
   margin-top: 4px;
 `;
 
-const NavLink = styled.div`
+const NavLink = styled(Link)`
   cursor: pointer;
   font-family: rubik;
   font-size: 18px;
@@ -62,6 +62,8 @@ const NavLink = styled.div`
   color: ${props => (props.light ? "#e2e2e2" : "black")};
   margin-left: ${spacing * 2}px;
 `;
+
+const PageLink = NavLink.withComponent("div");
 
 const ExternalLink = NavLink.withComponent("a");
 
@@ -153,7 +155,7 @@ const AppView = ({ children, location }) => {
             <nav>
               {location.pathname === "/" ? (
                 <FlexContainer>
-                  <NavLink
+                  <PageLink
                     onClick={() => {
                       animateToId("portfolio");
                     }}
@@ -161,8 +163,8 @@ const AppView = ({ children, location }) => {
                     to="projects"
                   >
                     Projects
-                  </NavLink>
-                  <NavLink
+                  </PageLink>
+                  <PageLink
                     onClick={() => {
                       animateToId("identity");
                     }}
@@ -170,8 +172,8 @@ const AppView = ({ children, location }) => {
                     to="identity"
                   >
                     Identity
-                  </NavLink>
-                  <NavLink
+                  </PageLink>
+                  <PageLink
                     onClick={() => {
                       animateToId("art");
                     }}
@@ -179,8 +181,8 @@ const AppView = ({ children, location }) => {
                     to="art"
                   >
                     Art
-                  </NavLink>
-                  <NavLink
+                  </PageLink>
+                  <PageLink
                     onClick={() => {
                       animateToId("contact");
                     }}
@@ -188,11 +190,13 @@ const AppView = ({ children, location }) => {
                     to="art"
                   >
                     Contact
-                  </NavLink>
+                  </PageLink>
                 </FlexContainer>
               ) : (
                 <FlexContainer>
-                  <NavLink light={true}>Close</NavLink>
+                  <NavLink to="/" light={true}>
+                    Close
+                  </NavLink>
                 </FlexContainer>
               )}
             </nav>

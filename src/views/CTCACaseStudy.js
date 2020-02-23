@@ -28,6 +28,12 @@ const TextContainer = styled.div`
   position: absolute;
   right: 128px;
   bottom: 128px;
+
+  @media (max-width: 720px) {
+    bottom: 32px;
+    left: 32px;
+    right: 32px;
+  }
 `;
 
 const H1 = styled.h1`
@@ -35,11 +41,18 @@ const H1 = styled.h1`
   font-size: 150px;
   font-family: Rubik;
   color: rgba(255, 255, 255, 0.9);
+  @media (max-width: 720px) {
+    font-size: 80px;
+  }
 `;
 
 const H2 = styled(H1)`
   font-size: 60px;
   margin-left: 10px;
+  @media (max-width: 720px) {
+    font-size: 50px;
+    margin-left: 3px;
+  }
 `;
 
 const H3 = styled.h2`
@@ -86,6 +99,15 @@ const fadeUp = {
   }
 };
 
+const BackgroundImage = styled(Box)`
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.75);
+  background-image: url("https://bloximages.newyork1.vip.townnews.com/tulsaworld.com/content/tncms/assets/v3/editorial/d/f0/df0c082a-f188-11e8-8acc-df5781ccc40c/5bfc0547755a6.image.jpg?resize=1200%2C800");
+`;
+
 const Img = styled.img`
   margin-bottom: 32px;
 `;
@@ -93,15 +115,7 @@ const Img = styled.img`
 const WeWorkCaseStudy = () => (
   <Box>
     <Container>
-      <Box
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundSize: "cover",
-          filter: "brightness(0.75)",
-          backgroundImage: `url("https://bloximages.newyork1.vip.townnews.com/tulsaworld.com/content/tncms/assets/v3/editorial/d/f0/df0c082a-f188-11e8-8acc-df5781ccc40c/5bfc0547755a6.image.jpg?resize=1200%2C800")`
-        }}
-      ></Box>
+      <BackgroundImage />
       <TextContainer>
         <Box>
           <motion.div
@@ -123,9 +137,9 @@ const WeWorkCaseStudy = () => (
         </Box>
       </TextContainer>
     </Container>
-    <Box p={5}>
-      <Flex>
-        <Box flex={1}>
+    <Box p={[4, 5]} pt={5}>
+      <Flex flexWrap="wrap">
+        <Box width={[1, 1 / 3]} mb={4}>
           <Box mb={4}>
             <H3>Role</H3>
             <P>UX Strategiest / Prototyper</P>
@@ -141,7 +155,7 @@ const WeWorkCaseStudy = () => (
             <P>2 month</P>
           </Box>
         </Box>
-        <Box flex={2} pl={5} pr={4}>
+        <Box width={[1, 2 / 3]} pl={[0, 5]} pr={[0, 4]}>
           <H2
             style={{
               marginTop: -8,

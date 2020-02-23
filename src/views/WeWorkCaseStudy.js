@@ -24,6 +24,11 @@ const TextContainer = styled.div`
   position: absolute;
   right: 128px;
   bottom: 128px;
+
+  @media (max-width: 720px) {
+    bottom: 32px;
+    left: 32px;
+  }
 `;
 
 const H1 = styled.h1`
@@ -31,11 +36,18 @@ const H1 = styled.h1`
   font-size: 150px;
   font-family: Rubik;
   color: rgba(255, 255, 255, 0.9);
+  @media (max-width: 720px) {
+    font-size: 80px;
+  }
 `;
 
 const H2 = styled(H1)`
   font-size: 60px;
   margin-left: 10px;
+  @media (max-width: 720px) {
+    font-size: 50px;
+    margin-left: 3px;
+  }
 `;
 
 const H3 = styled.h2`
@@ -82,6 +94,15 @@ const fadeUp = {
   }
 };
 
+const BackgroundImage = styled(Box)`
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.75);
+  background-image: url("https://locations-api-production.imgix.net/locations/image/b76c4f76-2fdd-11e9-80e8-1202be33576a/Web_72DPI-20181220_WeWork_Daimyo_-_Common_Areas_-_Couch_Area-2.jpg?auto=format%20compress&fit=crop&q=50&w=1800&h=1013");
+`;
+
 const Img = styled.img`
   margin-bottom: 32px;
 `;
@@ -89,15 +110,7 @@ const Img = styled.img`
 const WeWorkCaseStudy = () => (
   <Box>
     <Container>
-      <Box
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundSize: "cover",
-          filter: "brightness(0.75)",
-          backgroundImage: `url("https://locations-api-production.imgix.net/locations/image/b76c4f76-2fdd-11e9-80e8-1202be33576a/Web_72DPI-20181220_WeWork_Daimyo_-_Common_Areas_-_Couch_Area-2.jpg?auto=format%20compress&fit=crop&q=50&w=1800&h=1013")`
-        }}
-      ></Box>
+      <BackgroundImage />
       <TextContainer>
         <Box>
           <motion.div
@@ -119,9 +132,9 @@ const WeWorkCaseStudy = () => (
         </Box>
       </TextContainer>
     </Container>
-    <Box p={5}>
-      <Flex>
-        <Box flex={1}>
+    <Box p={[4, 5]} pt={5}>
+      <Flex flexWrap="wrap">
+        <Box width={[1, 1 / 3]} mb={4}>
           <Box mb={4}>
             <H3>Role</H3>
             <P>Engagement Lead, UX Strategiest</P>
@@ -145,7 +158,7 @@ const WeWorkCaseStudy = () => (
             <P>1 Year</P>
           </Box>
         </Box>
-        <Box flex={2} pl={5} pr={4}>
+        <Box width={[1, 2 / 3]} pl={[0, 5]} pr={[0, 4]}>
           <H2
             style={{
               marginTop: -8,
