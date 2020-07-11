@@ -5,6 +5,8 @@ import { Hero } from "components/layouts";
 import { Link } from "react-router-dom";
 import RoomView from "./RoomView";
 import cogni1 from "assets/cogni-homescreen.png";
+import supercell from "assets/brawlstars.png";
+import supercellLogo from "assets/supercell-logo.png";
 import FadeInBox from "./FadeInBox";
 import michael from "assets/michael.JPG";
 import me from "assets/me.jpg";
@@ -132,6 +134,12 @@ const Image = styled.img`
   object-position: top;
   object-fit: cover;
   filter: brightness(0.9);
+
+  ${p =>
+    p.disabled &&
+    `
+    filter: brightness(0.9)grayscale(1);
+    `}
 `;
 
 const Title = styled.div`
@@ -240,10 +248,11 @@ const PortfolioGridItem = ({
   y,
   send,
   setMouseMove,
-  setActive
+  setActive,
+  disabled
 }) => (
   <motion.div
-    style={{ x: send, opacity: y }}
+    style={{ opacity: y }}
     whileHover={{ scale: 0.95 }}
     onHoverStart={() => setActive(true)}
     onHoverEnd={() => setActive(false)}
@@ -316,7 +325,7 @@ const HomeView = props => {
                 "https://cdn.theorg.com/74693ee3-9e07-45b2-90d8-506b76cdeb42_medium.jpg"
               );
             }}
-            send={yTranslate}
+            send={yInvert}
             setMouseMove={coordinates => {
               const [x, y] = coordinates;
               hoverX.set(x - 50);
@@ -348,24 +357,25 @@ const HomeView = props => {
           />
         </Link>
 
-        <PortfolioGridItem
-          y={yInvert}
-          setActive={isActive => {
-            setHoverActive(isActive);
-            setCurrentItem(
-              "data:image/png;base64,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"
-            );
-          }}
-          setMouseMove={coordinates => {
-            const [x, y] = coordinates;
-            console.log(x, y);
-            hoverX.set(x - 50);
-            hoverY.set(y - 50);
-          }}
-          send={yTranslate}
-          title="Cogni"
-          image={cogni1}
-        />
+        <Link to="/supercell">
+          <PortfolioGridItem
+            y={yInvert}
+            disabled
+            setActive={isActive => {
+              setHoverActive(isActive);
+              setCurrentItem(supercellLogo);
+            }}
+            setMouseMove={coordinates => {
+              const [x, y] = coordinates;
+              console.log(x, y);
+              hoverX.set(x - 50);
+              hoverY.set(y - 50);
+            }}
+            send={yTranslate}
+            title="Supercell"
+            image={supercell}
+          />
+        </Link>
         {false && (
           <React.fragment>
             <PortfolioGridItem

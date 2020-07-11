@@ -10,6 +10,7 @@ import ArtView from "views/ArtView";
 import IdentityView from "views/IdentityView";
 import PortfolioView from "views/PortfolioView";
 import WeWorkCaseStudy from "views/WeWorkCaseStudy";
+import SupercellCaseStudy from "views/SupercellCaseStudy";
 import CTCACaseStudy from "views/CTCACaseStudy";
 
 ReactDOM.render(
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route exact path="/" component={HomeView} />
       <Route exact path="/wework" component={WeWorkCaseStudy} />
       <Route exact path="/ctca" component={CTCACaseStudy} />
+      <Route exact path="/supercell" component={SupercellCaseStudy} />
     </AppView>
   </Router>,
   document.getElementById("root")

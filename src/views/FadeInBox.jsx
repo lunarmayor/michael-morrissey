@@ -57,7 +57,7 @@ const FadeInBox = ({ className, children }) => {
     useTransform(
       scrollY,
       [offsetTop - window.innerHeight, offsetTop - window.innerHeight + 400],
-      [0, 1]
+      [0.8, 1]
     ),
     springConfig
   );

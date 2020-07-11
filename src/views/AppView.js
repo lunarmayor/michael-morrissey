@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { lighten, darken } from "polished";
 import { palette, spacing } from "theme";
-import lunar from "assets/lunar.png";
+import lunar from "assets/lunar3.png";
 import ScrollToTop from "./ScrollToTop";
 import {
   useViewportScroll,
@@ -13,7 +13,6 @@ import {
 } from "framer-motion";
 import animateScrollTo from "animated-scroll-to";
 
-import lunarp from "assets/lunar.webp";
 import {
   Grid,
   Section,
@@ -136,7 +135,6 @@ const AppView = ({ children, location }) => {
               >
                 <Link to="">
                   <picture>
-                    <source srcSet={lunarp} type="image/webp" />
                     <Logo src={lunar} />
                   </picture>
                 </Link>
@@ -194,8 +192,17 @@ const AppView = ({ children, location }) => {
                 </FlexContainer>
               ) : (
                 <FlexContainer>
+                  <NavLink to="/wework" light={true}>
+                    WeWork
+                  </NavLink>
+                  <NavLink to="/ctca" light={true}>
+                    CTCA
+                  </NavLink>
+                  <NavLink to="/supercell" light={true}>
+                    Supercell
+                  </NavLink>
                   <NavLink to="/" light={true}>
-                    Close
+                    Home
                   </NavLink>
                 </FlexContainer>
               )}

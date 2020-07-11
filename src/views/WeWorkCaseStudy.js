@@ -137,7 +137,7 @@ const WeWorkCaseStudy = () => (
         <Box width={[1, 1 / 3]} mb={4}>
           <Box mb={4}>
             <H3>Role</H3>
-            <P>Engagement Lead, UX Strategiest</P>
+            <P>Engagement Lead / UX Strategiest / Engineer</P>
           </Box>
 
           <Box mb={4}>
