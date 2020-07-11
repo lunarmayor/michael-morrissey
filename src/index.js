@@ -6,9 +6,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import AppView from "views/AppView";
 import HomeView from "views/HomeView";
-import ArtView from "views/ArtView";
-import IdentityView from "views/IdentityView";
-import PortfolioView from "views/PortfolioView";
 import WeWorkCaseStudy from "views/WeWorkCaseStudy";
 import SupercellCaseStudy from "views/SupercellCaseStudy";
 import CTCACaseStudy from "views/CTCACaseStudy";
