@@ -158,8 +158,8 @@ const WeWorkCaseStudy = () => (
               lineHeight: 1.5
             }}
           >
-            Created a loyaly program for Supercell's top content creators built
-            completly inside of Slack.
+            Created a loyalty program for Supercell's top content creators built
+            completely inside of Slack.
           </H2>
           <Box mb={3}>
             <P2>
