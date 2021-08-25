@@ -444,29 +444,17 @@ const HomeView = props => {
               </FadeInBox>
               <FadeInBox>
                 <P>
-                  I like working in highly collaborate groups that care deeply
-                  about getting to the truth, priorizing communication over
-                  tooling, making over talking, and are crytal clear about what
+                  I like working in highly collaborative groups that care deeply
+                  about getting to the truth, prioritizing communication over
+                  tooling, making over talking, and are crystal clear about what
                   outcomes they are trying to produce.
                 </P>
               </FadeInBox>
               <FadeInBox>
                 <P>
-                  I try to think less about my role and more about what the most
-                  valuable activity I could be doing for a customer, user, or
-                  business.
-                </P>
-              </FadeInBox>
-              <FadeInBox>
-                <P>
-                  If you're interested in the type of work I like and don't
-                  like, I made a couple lists{" "}
-                  <a
-                    style={{ color: "white" }}
-                    href="https://www.notion.so/lunarmayor/About-Working-f25b562cae714bb099ca4c59d0cfea57"
-                  >
-                    here.
-                  </a>
+                  I have a large diversity of skills so I try to think less
+                  about my role and more about the value that i'm bringing to a
+                  customer, user, or business.
                 </P>
               </FadeInBox>
               <img
