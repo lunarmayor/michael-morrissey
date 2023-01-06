@@ -15,7 +15,7 @@
     "react-lazy-load": "^3.0.13",
     "react-lazyload": "^2.3.0",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10",
+    "react-scripts": "5.0.1",
     "styled-components": "^4.4.1",
     "three": "^0.86.0",
     "three-obj-loader": "^1.1.2"
